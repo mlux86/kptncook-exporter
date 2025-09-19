@@ -1,0 +1,29 @@
+### Authentication
+
+POST https://api.production.kptncook.com/auth/login
+Content-Type: application/json
+kptnkey: YOUR_API_KEY_HERE
+
+{
+  "email": "name@email.net",
+  "password": "..."
+}
+
+> {% client.global.set("accessToken", response.body.accessToken) %}
+
+### Favorites Retrieval
+
+GET https://api.production.kptncook.com/favorites
+Token: {{accessToken}}
+
+### Recipe Search (use identifier from favorites)
+
+POST https://api.production.kptncook.com/recipes/search?kptnkey=YOUR_API_KEY_HERE&lang=de
+Content-Type: application/json
+Token: {{accessToken}}
+
+[
+    {
+        "identifier": "632d8e7a54000071006c1fd9"
+    }
+]
